@@ -1,0 +1,34 @@
+{% load static %}
+<section>
+    <!-- Start Bio Description -->
+    <div class="container">
+        {% if user_info.signature %}
+            <p>Great! Your TikTok Profile Bio Description has been setup for <b>{{ user_info.unique_id }}</b>!</p>
+        {% else %}
+            <p>Whoops! Your TikTok Profile Bio Description has not been setup yet!</p>
+            <br>
+            <p>Open TikTok and add up to 80 characters to describe what your videos will focus on.</p>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <img class="img-responsive" src="{% static 'images/screenshots/Screenshot_opening_screen_edit_profile.jpg' %}" alt="TikTok_Insights_Edit_Bio">
+                    </td>
+                    <td>
+                        <img class="img-responsive" src="{% static 'images/screenshots/Screenshot_Edit_Profile_Edit_Bio.jpg' %}" alt="TikTok_Insights_Edit_Bio">
+                    </td>
+                </tr>
+            </table>
+            <p>Decide which niche you will be focusing on and then add a description so that viewers</p>
+            <p>know what your channel is all about and can decide whether to follow you.</p>
+        {% endif %}
+        <br />
+        <p>Some influencers have seen good results with short bios that describe what they do.</p>
+        <br/>
+        <p>Good examples for short but descriptive bios are:</p>
+        <ul class="list-group">
+            <li class="list-group-item"><a class="text-primary stretched-link" href="https://www.tiktok.com/@drjuliesmith" target="_blank">Dr. Julie Smith (Psychologist & Author)</a></li>
+            <li class="list-group-item"><a class="text-primary stretched-link" href="hhttps://www.tiktok.com/@lewis" target="_blank">Lewis Howes (NY Times Bestseller 📚)</a></li>
+       </ul>
+    </div>
+    <div class="divider"></div>
+</section>

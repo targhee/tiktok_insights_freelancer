@@ -1,0 +1,155 @@
+<section>
+<!-- Start Collapse Stats -->
+<button id="collapsible-one" type="button" class="collapsible">Posting Frequency</button>
+<div class="content">
+    <br />
+    {% if user_feed.average_videos_per_day > 0.0 %}
+    <p>TikTok Insights found {{ user_feed.average_videos_lookback_count }} videos in the last
+        {{user_feed.average_videos_lookback_days}} days</p>
+    <p>You are posting {{ user_feed.average_videos_per_day }} videos per day</p>
+    {% else %}
+    <p>No videos detected from the last {{user_feed.average_videos_lookback_days}} days, you need to
+        get started.</p>
+    {% endif %}
+    <br>
+    <p>Your target should be 1 to 3 per day</p>
+    <br>
+    {% if user_feed.average_videos_per_day > 1.0 %}
+        <p>Result: Awesome, you're on track!</p>
+    {% elif user_feed.average_videos_per_day > 0.5 %}
+        <p>Result: Great! You're pretty close but could improve.</p>
+    {% else %}
+        <p>Result: Dang! There is room for improvement here.</p>
+    {% endif %}
+    <br><br>
+        <p>Guidance:</p>
+        <p>For best results, you should post 1 to 3 videos per day</p>
+        <p>but there should be at least 4 hours between each post.</p>
+        <br />
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Video Length</button>
+<div class="content">
+    <br />
+    {% if user_feed.average_videos_lookback_days %}
+    <p>TikTok Insights found that your average video duration was {{user_feed.average_videos_duration}}
+        seconds when analyzing videos from the last {{user_feed.average_videos_lookback_days}}
+        days</p>
+    {% else %}
+    <p>No videos detected from the last {{user_feed.average_videos_lookback_days}} days,
+        you need to get started.</p>
+    {% endif %}
+    <br>
+    <p>Your target should be less than 30 seconds because people lose interest and TikTok
+        gives higher rankings for videos that are watched completely from start to finish.
+    </p>
+    <br>
+    {% if user_feed.average_videos_duration <= 30 %}
+        <p>Result: Awesome! You're on track!</p>
+    {% elif user_feed.average_videos_duration <= 45 %}
+        <p>Result: Umm. You're pretty close but could improve.</p>
+    {% else %}
+        <p>Result: Dang! There is room for improvement here.</p>
+    {% endif %}
+    <br>
+        <p>Guidance:</p>
+        <p>For best results, you should post videos in the 15 to 30 second range.</p>
+        <br />
+    <br>
+    <p>Make the changes and then check back in a week to see the improvement</p>
+    <br />
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Likes Per View</button>
+<div class="content">
+    <br />
+    {% if user_feed.average_rc_likes > 0 %}
+    <p>TikTok Insights found 1 like for every {{user_feed.average_rc_likes}} views in the last
+        {{user_feed.average_count}} videos.</p>
+    {% else %}
+    <p>No likes detected from the last {{user_feed.average_count}} videos, you need to get started.</p>
+    {% endif %}
+    <br><br>
+    <p>Guidance:</p>
+    <p>A high number of "views per like" means that your content is too similar to other TikTok videos.</p>
+    <p>You want to stand out and that may mean being different.</p>
+    <p>To decrease the number of views you get per like, think about less competitive areas to concentrate</p>
+    <p>on, e.g. an unusual interest that you have.</p>
+    <br>
+    <p>Make the changes and then check back in a week to see the improvement</p>
+    <br />
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Comments Per View</button>
+<div class="content">
+    <br />
+    {% if user_feed.average_rc_comments > 0 %}
+    <p>TikTok Insights found 1 comment for every {{user_feed.average_rc_comments}} views in the last
+        {{user_feed.average_count}} videos.</p>
+    {% else %}
+    <p>No comments detected from the last {{user_feed.average_count}} videos, you need to get started.</p>
+    {% endif %}
+    <br><br>
+    <p>Guidance:</p>
+    <p>A high number of "views per comment" means that your content is not engaging your viewers. You want</p>
+    <p> to interact with your viewers.</p>
+    <p>To improve, you need to decrease the number of views you get per comment, try to engage the viewer</p>
+    <p> with prompts such as "Has something like this ever happened to you"?</p>
+    <p>Replying to comments is also a good way to engage with your viewers and encourage future comments.</p>
+    <br>
+    <p>Make the changes and then check back in a week to see the improvement</p>
+    <br />
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Shares Per View</button>
+<div class="content">
+    <br />
+    {% if user_feed.average_rc_shares > 0 %}
+    <p>TikTok Insights found 1 share for every {{user_feed.average_rc_shares}} views in the last
+        {{user_feed.average_count}} videos.</p>
+    {% else %}
+    <p>No shares detected from the last {{user_feed.average_count}} videos, you need to get started.</p>
+    {% endif %}
+    <br><br>
+    <p>Guidance:</p>
+    <p>A high number of "views per share" means that your content is either not shareable or you</p>
+    <p> aren't asking.</p>
+    <p>Create content that your viewers use to raise their profile. It also helps to prompt your </p>
+    <p>viewers to share your content.</p>
+    </p>To improve, you need to decrease the number of views you get per comment. A good way to do</p>
+    <p>this is to prompt the viewer to share the videos that connect such as "Does this remind</p>
+    <p>you of anyone"?</p>
+    <br>
+    <p>Make the changes and then check back in a week to see the improvement</p>
+    <br />
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">For You Page Percentile</button>
+<div class="content">
+    <p>Lorem ipsum...</p>
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Sound Percentile</button>
+<div class="content">
+    <p>Lorem ipsum...</p>
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Follower Percentile</button>
+<div class="content">
+    <p>Lorem ipsum...</p>
+</div>
+<div class="divider"></div>
+
+<button type="button" class="collapsible">Hashtag Percentile</button>
+<div class="content">
+    <p>Lorem ipsum...</p>
+</div>
+<!-- End Collapse Stats -->
+</section>

@@ -1,0 +1,30 @@
+{% load static %}
+<section>
+    <!-- Start Links Check -->
+    <div class="container">
+        {% if user_info.links %}
+            <p>Great! Your TikTok Profile has setup links for <b>{{ user_info.unique_id }}</b>!</p>
+        {% else %}
+            <p>Whoops! Your TikTok Profile has not setup links yet!</p>
+            <br>
+            <p>Open TikTok and add your Instagram, Facebook and/or Linked-In links to the linktree.</p>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <img class="img-responsive" src="{% static 'images/screenshots/Screenshot_opening_screen_edit_profile.jpg' %}" alt="TikTok_Insights_Add_Social">
+                    </td>
+                    <td>
+                        <img class="img-responsive" src="{% static 'images/screenshots/Screenshot_Edit_Profile_Add_IG.jpg' %}" alt="TikTok_Insights_Add_Social">
+                    </td>
+                </tr>
+            </table>
+            <p>Before deciding to follow you, viewers may want to look at your other content</p>
+            <p>and if it matches what they expect, they can decide whether to follow you.</p>
+        {% endif %}
+        <br />
+        <p>Most influencers have a linktree with different social media links. This isn't critical</p>
+        <p>if you don't have other social media but you should capture it if you have it.</p>
+        <br/>
+    </div>
+    <div class="divider"></div>
+</section>

@@ -1,0 +1,29 @@
+{% load static %}
+<section>
+    <!-- Start Username Info -->
+    <div class="container">
+        {% if user_info.unique_id %}
+            <p>Great! Your TikTok Username has been setup as <b>{{ user_info.unique_id }}</b>!</p>
+            <br>
+            <p>Your TikTok Username was found and we're able to retrieve your data from TikTok.</p>
+        {% else %}
+            <p>Whoops! Your TikTok Username has not been setup yet!</p>
+            <br>
+            <a href="{% url 'users:user_profile' %}">
+                Save your TikTok Username in your TikTokInsights Profile by clicking here.
+                <br/>
+                Then return to this page.
+            </a>
+            Screenshot_Push_Notification
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <img class="img-responsive" src="{% static 'images/screenshots/Screenshot_set_username.png' %}" alt="TikTok_Insights_Setup_Username">
+                    </td>
+                </tr>
+            </table>
+        {% endif %}
+        <br />
+    </div>
+    <div class="divider"></div>
+</section>

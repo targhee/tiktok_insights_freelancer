@@ -1,0 +1,142 @@
+
+<section>
+
+  <div>
+    <br>
+    <h2>Duration of Last Videos</h2>
+    <br>
+    <canvas id="VideoLengthChart"></canvas>
+  </div>
+  <div>
+    <br>
+    <h2>Likes of Last Videos</h2>
+    <br>
+    <canvas id="VideoLikesChart"></canvas>
+  </div>
+  <div>
+    <br>
+    <h2>Comments of Last Videos</h2>
+    <br>
+    <canvas id="VideoCommentsChart"></canvas>
+  </div>
+  <div>
+    <br>
+    <h2>Shares of Last Videos</h2>
+    <br>
+    <canvas id="VideoSharesChart"></canvas>
+  </div>
+  <div>
+    <br>
+    <h2>Engagement of Last Videos</h2>
+    <br>
+    <canvas id="VideoEngagementChart"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  {% if user_charts.video_name and user_charts.video_duration %}
+  <script>
+    const ctx1 = document.getElementById('VideoLengthChart');
+  
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: [{% for name in user_charts.video_name %}'{{name}}',{% endfor %}],
+        datasets: [{
+          label: "Length of Last Videos",
+          data: [{% for duration in user_charts.video_duration %}'{{duration}}',{% endfor %}],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endif %}
+  
+  <div class="divider"></div>
+
+  {% if user_charts.video_name %}
+  <script>
+    const ctx2 = document.getElementById('VideoLikesChart');
+  
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: [{% for name in user_charts.video_name %}'{{name}}',{% endfor %}],
+        datasets: [{
+          label: "# Likes of Last Videos",
+          data: [{% for likes in user_charts.likes %}'{{likes}}',{% endfor %}],
+          borderWidth: 1
+        } ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endif %}
+  <div class="divider"></div>
+
+  {% if user_charts.video_name %}
+  <script>
+    const ctx3 = document.getElementById('VideoCommentsChart');
+  
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: [{% for name in user_charts.video_name %}'{{name}}',{% endfor %}],
+        datasets: [{
+          label: "# Comments of Last Videos",
+          data: [{% for comments in user_charts.comments %}'{{comments}}',{% endfor %}],
+          borderWidth: 1
+        } ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endif %}
+  <div class="divider"></div>
+
+  {% if user_charts.video_name %}
+  <script>
+    const ctx4 = document.getElementById('VideoSharesChart');
+  
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: [{% for name in user_charts.video_name %}'{{name}}',{% endfor %}],
+        datasets: [{
+          label: "# Shares of Last Videos",
+          data: [{% for shares in user_charts.shares %}'{{shares}}',{% endfor %}],
+          borderWidth: 1
+        } ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endif %}
+  <div class="divider"></div>
+
+</section>

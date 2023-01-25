@@ -1,0 +1,27 @@
+default_context:
+  _pegasus_version: 2022.11.1
+  author_name: Webthayer
+  ci: github_actions
+  css_framework: tailwind
+  css_theme: default
+  database: postgres
+  deploy_platform: fly
+  description: Get Amazing Insights to Rocket Your TikTok Following
+  domain_name: tiktokinsights.com
+  email: webthayer@gmail.com
+  enable_google_login: y
+  enable_twitter_login: y
+  front_end_framework: react
+  project_name: TikTok Insights
+  project_slug: tiktok_insights
+  stripe_payment_mode: checkout
+  subscription_billing_model: default
+  use_2fa: y
+  use_api_keys: n
+  use_docker: y
+  use_impersonation: y
+  use_sentry: y
+  use_subscriptions: y
+  use_teams: n
+  use_translations: y
+  use_wagtail: n

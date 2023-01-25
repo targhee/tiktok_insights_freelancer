@@ -1,0 +1,213 @@
+{% extends "web/app/app_base.html" %}
+{% load i18n %}
+{% load static %}
+{% block app %}
+<section class="app-main-head">
+    <div class="pg-columns pg-columns-reversed pg-align-items-center">
+        <div class="pg-column">
+            <h1 class="pg-title">{% translate "TikTok Insights User Profile" %}</h1>
+            <h2 class="pg-subtitle">
+                {% if subscription %}
+                   <div class="my-2 pg-text-centered pg-text-success">
+                    <p> {% translate "This is TikTok Insight's Guided Tour for " %} {{user_info.unique_id}}</p>
+                   </div>
+                {% else %}
+                    <div class="my-2 pg-text-centered pg-text-info">
+                    <p>{% translate "Whoops! It doesn't look like you're subscribed." %}</p>
+                    <p>{% translate "You'll need to subscribe to see the Guides." %}</p>
+                    <p><a href="{% url 'subscriptions:subscription_details' %}"><strong>Upgrade Here!</strong></a></p>
+                    </div>
+                {% endif %}
+                <!-- The following grabs the name of the page and makes it the Header -->
+                <div class="my-2 pg-text-centered">
+                    {% for page in page_obj %}
+                        {{ page }}
+                    {% endfor %}
+                    {% translate " Info Page" %}
+                </div>
+            </h2>
+            {% if page_number == "1" or page_number == None %}
+                {% include 'tiktok_info/tiktok_guided_user_1.html' %}
+            {% elif page_number == "2" %}
+                {% include 'tiktok_info/tiktok_guided_user_2.html' %}
+            {% elif page_number == "3" %}
+                {% include "tiktok_info/tiktok_guided_user_3.html" %}
+            {% elif page_number == "4" %}
+                {% include "tiktok_info/tiktok_guided_user_4.html" %}
+            {% elif page_number == "5" %}
+                {% include "tiktok_info/tiktok_guided_user_5.html" %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="pagination">
+    <span class="step-links my-2 pg-text-centered">
+        {% if page_obj.has_previous %}
+            <a class="text-primary stretched-link" href="?page=1">&laquo; first</a>
+            <a class="text-primary stretched-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current my-2 pg-text-centered">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="text-primary stretched-link" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="text-primary stretched-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+</section>
+
+<!-- Style CSS -->
+<style>
+    /* Tooltip container */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        /* If you want dots under the hoverable text */
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    /* CSS for allowing the tooltip to overflow div */
+    .stats {
+        overflow: visible;
+    }
+
+    /* Style the button that is used to open and close the collapsible content */
+    .collapsible {
+        background-color: white;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    /* Adds Icons */
+    .collapsible:after {
+        content: '\02795';
+        /* Unicode character for "plus" sign (+) */
+        font-size: 1rem;
+        color: white;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active:after {
+        content: "\2796";
+        /* Unicode character for "minus" sign (-) */
+        color: white;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active,
+    .collapsible:hover {
+        background-color: #de3bb4;
+    }
+
+    /* Style the collapsible content. Note: hidden by default */
+    .content {
+        padding: 0 18px;
+        overflow: hidden;
+        background-color: #d624a8;
+        color: white;
+        max-height: 0;
+        transition: max-height 0.2 ease-out;
+        margin-top: -10px;
+        border-radius: 10px;
+    }
+
+    #collapsible-one {
+        margin-top: 5.5rem;
+    }
+
+    .collapsible {
+        background-color: #d624a8;
+    }
+
+    /* Loader */
+    .loader {
+        display: none;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .loading {
+        border: 1.25rem solid #ccc;
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        border-top-color: #1ecd97;
+        border-left-color: #1ecd97;
+        animation: spin 2s infinite ease-in;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<!-- End Style CSS -->
+
+<!-- Collapsible Javascript Start -->
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+<!-- Collapsible Javascript End -->
+
+<!-- Spinner Javascript Start -->
+<script type="text/javascript">
+    function spinner() {
+        document.getElementsByClassName("loader")[0].style.display = "block";
+    }
+</script>
+<!-- Spinner Javascript End -->
+
+{% endblock %}

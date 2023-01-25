@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load socialaccount %}
+{% load static %}
+<a class="btn btn-info btn-outline btn-block flex justify-center" href="{% provider_login_url 'twitter' %}">
+  <span class="pg-icon">
+    {% include 'web/icons/twitter-icon.svg' %}
+  </span>
+  {% translate "Continue with Twitter" %}
+</a>
